@@ -1,0 +1,39 @@
+@import '_colors';
+
+mat-toolbar{
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.select-archive{
+    font-size: 16px;
+    margin: 0px 10px;
+}
+
+mat-toolbar-row{
+    background-color: white;
+}
+::ng-deep .mat-form-field.selector {
+    margin: 10px 0px;
+    color: white;
+    .mat-form-field-flex{
+        margin: 0px !important;
+        padding: 0px !important;
+        background-color: $primary;
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .mat-form-field-wrapper{
+        margin-top: 25px;
+    }
+    .mat-form-field-underline {
+        color: $primary;
+    }
+    .mat-select{
+        background-color: $primary;
+        padding-left: 15px;
+    }
+    .mat-select-arrow-wrapper{
+        padding-top: 13px;
+        padding-right: 5px;
+    }
+}

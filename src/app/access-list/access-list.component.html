@@ -1,0 +1,171 @@
+<div>
+    <div *ngIf="!isArchiveSelected()" class="title">
+        <h4>
+            Si prega di selezionare un presidio
+        </h4>
+    </div>
+    <h3 *ngIf="isArchiveSelected()" class="title">Accessi Pronto Soccorso di <strong>{{ archiveSelected.name }}</strong></h3>
+    <div *ngIf="!isTableLoading && isArchiveSelected()">
+        <div>
+            <mat-expansion-panel class="filter-section">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Filtri
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <div>
+                    <form #f="ngForm" class="form">
+                        <p class="header-title-filters">Anagrafica Paziente</p>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="Mario" name="nome" [(ngModel)]="filterForm.nome" />
+                            <mat-icon matSuffix></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Cognome</mat-label>
+                            <input matInput placeholder="Rossi" name="cognome" [(ngModel)]="filterForm.cognome" />
+                            <mat-icon matSuffix></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Codice Fiscale</mat-label>
+                            <input matInput placeholder="ABCDEF01A23B456C" name="codiceFiscale" [(ngModel)]="filterForm.codiceFiscale" />
+                            <mat-icon matSuffix></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Data di Nascita</mat-label>
+                            <mat-date-range-input [formGroup]="dataNascita" ngDefaultControl [rangePicker]="dataNascitaPicker" name="dataNascita">
+                                <input matStartDate formControlName="start"  placeholder="Data inizio">
+                                <input matEndDate formControlName="end" placeholder="Data fine">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="dataNascitaPicker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #dataNascitaPicker></mat-date-range-picker>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Sesso</mat-label>
+                            <mat-select [(value)]="filterForm.sesso">
+                                <mat-option>-</mat-option>
+                                <mat-option *ngFor="let sesso of getSessi()" [value]="sesso">
+                                  {{sesso}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-divider></mat-divider>
+                        <p class="header-title-filters">Di Accesso</p>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Numero Accesso</mat-label>
+                            <input matInput type="number" placeholder="1234567890" name="numeroAccesso" [(ngModel)]="filterForm.numeroAccesso" />
+                            <mat-icon matSuffix></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Colore</mat-label>
+                            <mat-select [(value)]="filterForm.colore">
+                                <mat-option>-</mat-option>
+                                <mat-option *ngFor="let color of getColors()" [value]="color">
+                                  {{color}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Data di Accesso</mat-label>
+                            <mat-date-range-input [formGroup]="dataAccesso" ngDefaultControl [rangePicker]="dataAccessoPicker" name="dataAccesso">
+                                <input matStartDate formControlName="start"  placeholder="Data inizio">
+                                <input matEndDate formControlName="end" placeholder="Data fine">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="dataAccessoPicker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #dataAccessoPicker></mat-date-range-picker>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Data di Dimissione</mat-label>
+                            <mat-date-range-input [formGroup]="dataDimissione" ngDefaultControl [rangePicker]="dataDimissionePicker" name="dataDimissione">
+                                <input matStartDate formControlName="start"  placeholder="Data inizio">
+                                <input matEndDate formControlName="end" placeholder="Data fine">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="dataDimissionePicker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #dataDimissionePicker></mat-date-range-picker>
+                        </mat-form-field>
+                        <mat-divider></mat-divider>
+                        <p class="header-title-filters">Generici</p>
+                        <mat-form-field color="accent" appearance="standard">
+                            <mat-label>Chiave Generica</mat-label>
+                            <input matInput type="text" placeholder="Chiave" name="chiaveGenerica" [(ngModel)]="filterForm.chiaveGenerica" />
+                            <mat-icon matSuffix></mat-icon>
+                        </mat-form-field>
+                        <mat-action-row>
+                            <button mat-raised-button color="accent" (click)="clearFilters()">Azzera filtri</button>
+                            <button mat-raised-button color="accent" (click)="f.form.valid && applyFilters()">Applica filtri</button>
+                        </mat-action-row>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </div>
+        <mat-table [dataSource]="verbali" class="mat-elevation-z8 table">
+    
+            <ng-container matColumnDef="colore">
+                <th mat-header-cell *matHeaderCellDef>Colore</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="element.colore?.toLowerCase()"> <strong>{{element.colore}}</strong></td>
+            </ng-container>
+    
+            <ng-container matColumnDef="numeroAccesso">
+                <th mat-header-cell *matHeaderCellDef> Numero Accesso </th>
+                <td mat-cell *matCellDef="let element"> {{element.accesso}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="paziente">
+                <th mat-header-cell *matHeaderCellDef> Paziente </th>
+                <td mat-cell *matCellDef="let element">{{element.nome}} {{element.cognome}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="problemaAccesso">
+                <th mat-header-cell *matHeaderCellDef> Problema Accesso </th>
+                <td mat-cell *matCellDef="let element"> {{element.problemaAccesso}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="dataAccesso">
+                <th mat-header-cell *matHeaderCellDef> Data Accesso </th>
+                <td mat-cell *matCellDef="let element"> {{element.dataAccesso}}<br>{{element.oraAccesso}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="dataDimissione">
+                <th mat-header-cell *matHeaderCellDef> Data Dimissione </th>
+                <td mat-cell *matCellDef="let element"> {{element.dataDimissione}}<br>{{element.oraDimissione}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="diagnosiDimissione">
+                <th mat-header-cell *matHeaderCellDef> Diagnosi Dimissione </th>
+                <td mat-cell *matCellDef="let element"> {{element.diagnosiDimissione}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="esitoTrattamento">
+                <th mat-header-cell *matHeaderCellDef> Esito Trattamento </th>
+                <td mat-cell *matCellDef="let element"> {{element.esitoTrattamento}} </td>
+            </ng-container>
+         
+            <ng-container matColumnDef="download">
+                <th mat-header-cell *matHeaderCellDef> Download </th>
+                <td mat-cell *matCellDef="let element; let i = index;"> 
+                    <div class="icon-container">
+                        <mat-progress-spinner [diameter]="40" matSuffix mode="indeterminate" *ngIf="isDownloading[i]"></mat-progress-spinner>
+                        <button matSuffix mat-mini-fab color="primary" [disabled]="downloadActive" *ngIf="!isDownloading[i]" (click)="download(element.accesso, i)" aria-label="Download Verbale">
+                            <mat-icon>download</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </mat-table>
+        <mat-paginator  #verbaliPaginator
+                        [length]="listLength"
+                        [pageIndex]="pageIndex"
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="[10, 25, 50, 100]"
+                        (page)="pageEvent = getVerbali($event)">
+        </mat-paginator>
+        <div *ngIf="verbali && verbali.data"><h4>Nessun Accesso trovato</h4></div>
+    </div>
+    <div *ngIf="isTableLoading && isArchiveSelected()" style="margin-top:100px; display: flex; justify-content: center; align-items: center;">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+</div>

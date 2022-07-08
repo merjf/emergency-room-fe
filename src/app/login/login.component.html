@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title *ngIf="message" class="session-expired-message">
+      {{ message }}
+    </mat-card-title>
+    <form #f="ngForm" *ngIf="!isLoggedIn" class="form" (ngSubmit)="f.form.valid && login()" name="form">
+      <h2>Pagina di Log In</h2>
+      <mat-error *ngIf="isLoginFailed">
+        Username o password non validi
+      </mat-error>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Username" name="username" [(ngModel)]="form.username" required>
+        <mat-error>
+          Inserisci un username valido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="form.password" required>
+        <mat-error>
+          Inserisci una password valida
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Login</button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,32 @@
+<div *ngIf="currentUser; else loggedOut">
+  <mat-card class="user-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon class="material-icons md-48 person">person</mat-icon>
+      </div>
+      <mat-card-title>Buongiorno {{ currentUser.name }} {{ currentUser.surname }}</mat-card-title>
+      <mat-card-subtitle>{{ currentUser.email }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <strong>Ruolo:</strong>
+      <ul>
+        <li *ngFor="let role of currentUser.roles">
+          {{ getRole(role) }}
+        </li>
+      </ul>
+      <strong>Presidi accessibili:</strong>
+      <ul>
+        <li *ngFor="let archive of currentUser.archives">
+          {{ archive.name }}
+        </li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf="isResearcher()">
+      <button mat-raised-button color="accent" (click)="showChangePasswordPanel()">Modifica Password</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<ng-template #loggedOut>
+  Sessione scaduta. Accedi nuovamente.
+</ng-template>

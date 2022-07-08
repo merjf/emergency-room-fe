@@ -1,0 +1,31 @@
+.create-user-dialog{
+    max-width: 50vw;
+    min-height: 400px;
+    .mat-dialog-content{
+        min-height: 380px !important;
+        .errors{
+            margin: 10px 30px;
+            text-align: center;
+        }
+        .form-fields{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            .mat-form-field{
+                margin: 5px 10px;
+            }
+            .password-invariata{
+                font-style: italic;
+            }
+            .slide-active {
+                align-self: center;
+                margin: 25px 10px 10px 10px;
+                flex-grow: 4;
+                .label{
+                    margin: 10px;
+                }
+            }
+        }
+    }
+}

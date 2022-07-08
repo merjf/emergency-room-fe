@@ -1,0 +1,18 @@
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+h2{
+  margin-bottom: 20px;
+}
+.session-expired-message{
+  color: red;
+  font-size: 18px;
+  text-align: center;
+  margin: 10px 0px;
+}
+mat-form-field {
+  display: block;
+  margin-top: 10px;
+}

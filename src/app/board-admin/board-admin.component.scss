@@ -1,0 +1,24 @@
+mat-toolbar{
+    .add-icon{
+        border: 0.1px;
+        border-color: white;
+    }
+}
+.table{
+    .material-icons.active{
+        color: green;
+    }
+    .material-icons.disabled{
+        color: red;
+    }
+    tr.mat-row:hover{
+        background-color: #e6e7e8;
+        cursor: pointer;
+    }
+    tr.mat-row:active {
+        color: yellow;
+    }
+    tr.mat-row:visited {
+        color: pink;
+    }      
+}

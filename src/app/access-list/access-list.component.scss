@@ -1,0 +1,46 @@
+@import '../../styles.scss';
+
+.title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.filter-section{
+    margin-bottom: 15px;
+    .mat-expansion-panel-header-title{
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .header-title-filters{
+        margin-bottom: 0px;
+        margin-top: 10px;
+    }
+    .header-title-filters:not(:first-of-type){
+        font-size: 14px;
+        margin-top: 40px;
+        margin-bottom: 0px;
+    }
+    .mat-form-field{
+        margin-right: 10px; 
+    }
+    .mat-action-row {
+        place-content: space-between;
+    }
+}
+.mat-table {
+    .verde{
+        color: green;
+    }
+    .giallo{
+        color: #d4bf26;
+    }
+    .rosso{
+        color: red;
+    }
+    .nero{
+        color: black;
+    }
+    .bianco{
+        text-shadow: 1px 1px 3px black;
+        color: white;
+    }
+}
