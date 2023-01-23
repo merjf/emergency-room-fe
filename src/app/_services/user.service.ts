@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-const API_URL = 'http://192.168.250.63:8080/user/';
+const API_URL = 'http://localhost:8080/user/';
 
 @Injectable({
   providedIn: 'root'
