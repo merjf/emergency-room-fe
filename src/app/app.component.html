@@ -1,9 +1,9 @@
 <div>
   <mat-toolbar>
     <mat-toolbar-row>
-      <span color="primary">ASP Messina - PS</span>
+      <span color="primary">Emergency Room - Web Portal</span>
       <mat-divider vertical style="height:100%;margin-left: 15px;"></mat-divider>
-      <span *ngIf="isLoggedIn() && !userHasToChangePassword" class="select-archive">Presidio selezionato: </span>
+      <span *ngIf="isLoggedIn() && !userHasToChangePassword" class="select-archive">Current Department: </span>
       <mat-form-field appearance="fill" *ngIf="isLoggedIn() && !userHasToChangePassword" class="selector">
         <mat-select [(value)]="archiveSelected" (selectionChange)="selectArchive()">
           <mat-option>-</mat-option>
@@ -15,8 +15,8 @@
       <span class="spacer"></span>
       <div *ngIf="isLoggedIn()">
         <button [disabled]="userHasToChangePassword" mat-button *ngIf="isAdmin" routerLink="admin" routerLinkActive="active">Admin Board</button>
-        <button [disabled]="userHasToChangePassword" *ngIf="isArchiveSelected()" mat-button routerLink="user" routerLinkActive="active">Accessi PS</button>
-        <button [disabled]="userHasToChangePassword" mat-button routerLink="profile" routerLinkActive="active">Profilo</button>
+        <button [disabled]="userHasToChangePassword" *ngIf="isArchiveSelected()" mat-button routerLink="user" routerLinkActive="active">Emergency Room Entrances</button>
+        <button [disabled]="userHasToChangePassword" mat-button routerLink="profile" routerLinkActive="active">Profile</button>
         <button mat-button [disabled]="userHasToChangePassword" (click)="logout()">Logout</button>
       </div>
     </mat-toolbar-row>

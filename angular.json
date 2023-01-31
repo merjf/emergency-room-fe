@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "aspme-ps-portal": {
+    "emergency-room-webportal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,14 +23,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/aspme-ps-portal",
+            "outputPath": "dist/emergency-room-webportal",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/logo.ico",
               "src/assets"
             ],
             "styles": [
@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "aspme-ps-portal:build:production"
+              "browserTarget": "emergency-room-webportal:build:production"
             },
             "development": {
-              "browserTarget": "aspme-ps-portal:build:development"
+              "browserTarget": "emergency-room-webportal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "aspme-ps-portal:build"
+            "browserTarget": "emergency-room-webportal:build"
           }
         },
         "test": {
@@ -101,7 +101,7 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/logo.ico",
               "src/assets"
             ],
             "styles": [
@@ -113,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "aspme-ps-portal"
+  "defaultProject": "emergency-room-webportal"
 }

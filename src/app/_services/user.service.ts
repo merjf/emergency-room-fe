@@ -35,14 +35,14 @@ export class UserService {
 
   mapRoleToAuthority(roles: any){
     let role = Array.isArray(roles) && roles.length === 1 ? roles[0] : roles;
-    if(role === 'Amministratore')
+    if(role === 'Administrator')
       return "ROLE_ADMIN";
-    else if(role === 'Consultatore')
+    else if(role === 'Researcher')
       return 'ROLE_RESEARCHER'
     else if(role === 'ROLE_ADMIN')
-      return 'Amministratore'
+      return 'Administrator'
     else if(role === 'ROLE_RESEARCHER')
-      return 'Consultatore'
+      return 'Researcher'
     else return "";
   }
 

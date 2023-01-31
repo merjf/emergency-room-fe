@@ -52,9 +52,9 @@ export class ProfileComponent implements OnInit {
 
   getRole(role: String){
     if(role === 'ROLE_ADMIN')
-      return "Amministratore";
+      return "Administrator";
     else if(role === 'ROLE_RESEARCHER')
-      return 'Consultatore'
+      return 'Researcher'
     else return null;
   }
 

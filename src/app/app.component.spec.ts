@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'aspme-ps-portal'`, () => {
+  it(`should have as title 'emergency-room-webportal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('aspme-ps-portal');
+    expect(app.title).toEqual('emergency-room-webportal');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('aspme-ps-portal app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('emergency-room-webportal app is running!');
   });
 });

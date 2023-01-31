@@ -1,40 +1,40 @@
 <div class="create-user-dialog">
-  <h1 mat-dialog-title>Creazione Utente</h1>
+  <h1 mat-dialog-title>New User Creation</h1>
   <div mat-dialog-content>
     <form #f="ngForm" class="form" [formGroup]="userForm" (ngSubmit)="f.form.valid && createUser()">
       <mat-error *ngIf="parametersNotValid" class="errors">
-        Parametri non validi!
+        Parameters not valid!
       </mat-error>
       <div class="form-fields">
         <mat-form-field appearance="standard">
-          <mat-label>Nome</mat-label>
-          <input matInput required="true" placeholder="Giorgio" name="name" formControlName="name" />
-          <mat-error *ngIf="userForm.controls.name.invalid">{{getErrorMessage(userForm.controls.name, 'Lunghezza minima 4 caratteri')}}</mat-error>
+          <mat-label>Name</mat-label>
+          <input matInput required="true" placeholder="John" name="name" formControlName="name" />
+          <mat-error *ngIf="userForm.controls.name.invalid">{{getErrorMessage(userForm.controls.name, 'At least 4 characters')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard">
-          <mat-label>Cognome</mat-label>
-          <input matInput required="true" placeholder="Bianchi" name="surname" formControlName="surname" />
-          <mat-error *ngIf="userForm.controls.surname.invalid">{{getErrorMessage(userForm.controls.surname, 'Lunghezza minima 4 caratteri')}}</mat-error>
+          <mat-label>Surname</mat-label>
+          <input matInput required="true" placeholder="Doe" name="surname" formControlName="surname" />
+          <mat-error *ngIf="userForm.controls.surname.invalid">{{getErrorMessage(userForm.controls.surname, 'At least 4 characters')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard">
           <mat-label>Email</mat-label>
-          <input matInput required="true" placeholder="email@esempio.com" name="email" formControlName="email" />
-          <mat-hint>email@esempio.com</mat-hint>
-          <mat-error *ngIf="userForm.controls.email.invalid">{{getErrorMessage(userForm.controls.email, 'Email non valida')}}</mat-error>
+          <input matInput required="true" placeholder="email@example.com" name="email" formControlName="email" />
+          <mat-hint>email@example.com</mat-hint>
+          <mat-error *ngIf="userForm.controls.email.invalid">{{getErrorMessage(userForm.controls.email, 'Email not valid')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard">
           <mat-label>Username</mat-label>
-          <input matInput required="true" placeholder="giorgio.bianchi" name="username"formControlName="username"/>
-          <mat-error *ngIf="userForm.controls.username.invalid">{{getErrorMessage(userForm.controls.username, 'Lunghezza minima 4 caratteri')}}</mat-error>
+          <input matInput required="true" placeholder="john.doe" name="username"formControlName="username"/>
+          <mat-error *ngIf="userForm.controls.username.invalid">{{getErrorMessage(userForm.controls.username, 'At least 4 characters')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard">
           <mat-label>Password</mat-label>
           <input matInput required="true" placeholder="Password1234" name="password" formControlName="password"/>
-          <mat-hint>Lunghezza minima 8 caratteri</mat-hint>
-          <mat-error *ngIf="userForm.controls.password.invalid">{{getErrorMessage(userForm.controls.password, 'Deve contenere almeno 1 numbero, 1 lettera Maiuscola e 1 minuscola')}}</mat-error>
+          <mat-hint>At least 8 characters</mat-hint>
+          <mat-error *ngIf="userForm.controls.password.invalid">{{getErrorMessage(userForm.controls.password, 'Must contain at least 1 number, 1 Capita letter 1 lowercase letter')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard">
-          <mat-label>Ruolo</mat-label>
+          <mat-label>Role</mat-label>
           <mat-select required="true" matInput name="selectedRole" formControlName="roles">
             <mat-option *ngFor="let role of roles" [value]="role">
               {{ role }}
@@ -42,10 +42,10 @@
           </mat-select>
         </mat-form-field>
         <mat-slide-toggle class="slide-active" formControlName="active" name="active" labelPosition="before">
-          <span>Attivo</span>
+          <span>Active</span>
         </mat-slide-toggle>
         <mat-form-field style="width:100%">
-          <mat-label>Presidi</mat-label>
+          <mat-label>Departments</mat-label>
           <mat-select [ngModel]="archivesSelected" (ngModelChane)="archivesSelected" [(value)]="archivesSelected" multiple [ngModelOptions]="{standalone: true}">
             <mat-option *ngFor="let archive of data.archives" [value]="archive.name">
               {{archive.name}}
@@ -54,8 +54,8 @@
         </mat-form-field>
       </div>
       <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Annulla</button>
-        <button mat-button cdkFocusInitial type="submit"> {{ user ? 'Modifica Utente' : 'Create Utente' }}</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button cdkFocusInitial type="submit"> {{ user ? 'Edit User' : 'Create New User' }}</button>
       </mat-dialog-actions>
     </form>
   </div>

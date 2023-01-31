@@ -71,6 +71,6 @@ export class BoardAdminComponent implements OnInit {
   }
 
   getRoles(){
-    this.creationUserInformation.roles = ['Amministratore', 'Consultatore'];
+    this.creationUserInformation.roles = ['Administrator', 'Researcher'];
   }
 }
